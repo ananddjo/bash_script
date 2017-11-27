@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Copying bashrc file"
+cp ./bashrc ~/.bashrc
+
+echo "Copying bash_profile file"
+cp ./bash_profile ~/.bash_profile
+
+echo "Loading bash profiles"
+source ~/.bashrc
+source ~/.bash_profile
