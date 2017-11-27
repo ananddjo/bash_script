@@ -1,2 +1,2 @@
-# bash_script
-bash script for alias
+# profiles
+bash profiles for alias
