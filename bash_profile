@@ -15,7 +15,13 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 # prompt 
+#parse_git_branch() {
+#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+#}
+#PS1="\[\033[0;36m\]\h:\W\[\033[0m\] 🤹  \[\033[0;31m\]\u\[\033[0m\]\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
+
+# prompt 
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git:\1)/'
 }
-PS1="\[\033[0;36m\]\h:\W\[\033[0m\] 🤹  \[\033[0;31m\]\u\[\033[0m\]\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
+PS1="\[\033[1;31m\]\u\[\033[0m\] at \[\033[1;33m\]\H\[\033[0m\] in \[\033[1;32m\]\w\[\033[0m\]\[\033[1;36m\]\$(parse_git_branch)\[\033[0m\]\n👉 "
