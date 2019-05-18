@@ -23,7 +23,7 @@ fi
 # git prompt
 
 # get current status of git repo
-function parse_git_dirty {
+parse_git_status() {
   STATUS="$(git status 2> /dev/null)"
   if [[ $? -ne 0 ]]; then printf "-"; return; else printf ""; fi
   if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf ">"; else printf ""; fi
@@ -36,6 +36,6 @@ function parse_git_dirty {
 }
 
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git:\1'$(parse_git_dirty)')/'
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git:\1'$(parse_git_status)')/'
 }
 PS1="\[\033[1;31m\]\u\[\033[0m\] at \[\033[1;33m\]\H\[\033[0m\] in \[\033[1;32m\]\w\[\033[0m\]\[\033[1;36m\]\$(parse_git_branch)\[\033[0m\]\n👉 "
